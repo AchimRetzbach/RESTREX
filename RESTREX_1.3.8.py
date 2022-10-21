@@ -21,7 +21,8 @@ plt.rcParams['figure.figsize'] = plt.rcParamsDefault['figure.figsize']
 #plt.rcParams["figure.figsize"] = (12,8)
 
 #Set variables / fields:
-output_location='Desktop/Auswertung/RESTREX_output'
+output_location='Desktop/RESTREX_Starterkit/Output'
+current_location='Desktop/RESTREX_Starterkit/RESTREX_1.3.8.py'
 kr83_kr84_norm=0.201750
 kr83_kr86_norm=0.664740
 rb85_rb87_norm=2.592310
@@ -1754,19 +1755,25 @@ def evaluateSequence(path,measurement_types=[],blank_correction=True,sequence_pl
     np.savetxt(output_location+'/neptune_auswertung_output_neptune.csv',output,delimiter='\u0009',fmt="%s",header=headerstring)
 
     #Save current Python script
-    copyfile('Desktop/Auswertung/neptune_auswertung.py',output_location+'/neptune_auswertung.py')
+    copyfile(current_location,output_location+'/RESTREX.py')
 
 
 
 ###############################################################################
 
 
-#Only change location at first, and runthe rest should be fine for most applications :-)
-location='Desktop/Auswertung/Daten/A3_BasicSamples'
+#Only change location at first, and run
+#The rest should be fine for most applications :-)
+#Don't forget to change the directory fields in the beginning when moving the file!
 
-evaluateSequence(path=location,measurement_types=[],blank_correction=True,
+location='Desktop/RESTREX_Starterkit/Example_Data'
+
+evaluateSequence(path=location,measurement_types=[],
+                 blank_correction=True,
                  sequence_plots=['sr84_sr86','sr87_sr86','sr88_sr86'],
                  sequence_tables=[],
                  plot_selection='standards_samples',
-                 show_neptune=False,measurement_plots=['kr83','rb85','sr84','sr88'],
-                 measurement_tables=['sr88'],sigma_clipping=2)
+                 show_neptune=False,
+                 measurement_plots=['kr83','rb85','sr84','sr88'],
+                 measurement_tables=['sr88'],
+                 sigma_clipping=2)
